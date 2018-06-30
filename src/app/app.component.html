@@ -1,15 +1,33 @@
 <nav class="control-list">
-    <button (click)="addConnection()">Add Connection</button>
+    <button mat-raised-button color="primary" (click)="addConnection()">Add Connection</button>
 </nav>
-<div class="connect">
-    <nav class="connection-list">
-        <div *ngFor="let connection of connections" (click)="showConnection(connection.connect)">{{connection.name}}</div>
-    </nav>
+
+<mat-card>
+    <mat-nav-list>
+        <mat-list-item
+                *ngFor="let connection of connections"
+                (click)="showConnection(connection.connect)">
+            {{connection.name}}
+        </mat-list-item>
+    </mat-nav-list>
     <nav class="key-list">
         <div class="key">
-            <button (click)="showConnection()">Reload</button>
-            <div *ngFor="let key of keys" (click)="getValue(key)">{{key}}</div>
+            <button mat-icon-button (click)="showConnection()">
+                <mat-icon>refresh</mat-icon>
+            </button>
+            <button mat-icon-button (click)="showConnection()">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <mat-nav-list>
+                <mat-list-item
+                    *ngFor="let key of keys"
+                    (click)="getValue(key)">
+                    {{key}}
+                </mat-list-item>
+            </mat-nav-list>
         </div>
-        <textarea>{{value}}</textarea>
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Value" [(ngModel)]="value"></textarea>
+        </mat-form-field>
     </nav>
-</div>
+</mat-card>
