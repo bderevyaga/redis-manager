@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "A minimal Angular Electron application",
   "main": "main.js",
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve --poll=2000",
@@ -26,8 +31,14 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "@types/redis": "^2.8.6",
     "core-js": "^2.5.4",
+    "fs": "0.0.1-security",
+    "hiredis": "^0.5.0",
+    "net": "^1.0.2",
+    "redis": "^2.8.0",
     "rxjs": "^6.0.0",
+    "tls": "0.0.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

@@ -1,3 +1,4 @@
-<h1>Welcome to Angular + Electron!</h1>
-<img alt="Angular Logo" src="assets/logo-angular.png">
-<img alt="Electron Logo" src="assets/logo-electron.png">
+<nav class="connection-list">
+    <div *ngFor="let connection of connections">{{connection.name}}</div>
+</nav>
+<button (click)="addConnection()">Add Connection</button>
