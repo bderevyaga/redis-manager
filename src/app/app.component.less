@@ -1,15 +1,63 @@
 :host {
-    display: block;
-    text-align:center; 
-    margin: 30px;
+    height: 100%;
 
-    h1 {
-        font-size: 2em; 
-        font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: stretch;
+
+    .control-list {
+        padding: 5px;
+
+        button {
+            height: 30px;
+        }
     }
 
-    img {
-        width: 300px;
-        margin: 40px;
+    .connect {
+        padding: 5px;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: stretch;
+
+        order: 0;
+        flex: 1 1 auto;
+        align-self: auto;
+
+        .connection-list {
+            width: 200px;
+            overflow: auto;
+
+            border: 1px solid #aaaaaa;
+        }
+
+        .key-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: center;
+            align-items: stretch;
+
+            order: 0;
+            flex: 1 1 auto;
+            align-self: auto;
+
+            .key {
+                width: 200px;
+            }
+
+            textarea {
+                order: 0;
+                flex: 1 1 auto;
+                align-self: auto;
+            }
+        }
     }
 }
