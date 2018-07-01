@@ -3,13 +3,7 @@
 </nav>
 <div class="connect">
     <nav class="connection-list">
-        <div *ngFor="let connection of connections" (click)="showConnection(connection.connect)">{{connection.name}}</div>
+        <div *ngFor="let connection of connections" (click)="onConnect(connection.connect)"><fa-icon [icon]="faDatabase"></fa-icon> {{connection.name}}</div>
     </nav>
-    <nav class="key-list">
-        <div class="key">
-            <button (click)="showConnection()">Reload</button>
-            <div *ngFor="let key of keys" (click)="getValue(key)">{{key}}</div>
-        </div>
-        <textarea>{{value}}</textarea>
-    </nav>
+    <app-conection *ngIf="connection" [connect]="connection"></app-conection>
 </div>

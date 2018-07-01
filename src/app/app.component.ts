@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ElectronService} from './providers/electron.service';
 import {RedisClient} from 'redis';
+import {faDatabase} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-root',
@@ -8,10 +9,9 @@ import {RedisClient} from 'redis';
     styleUrls: ['./app.component.less']
 })
 export class AppComponent {
+    public faDatabase = faDatabase;
     public connections: any[] = [];
-    public keys: string[] = [];
-    public connect: RedisClient;
-    public value: any;
+    public connection: RedisClient;
 
     constructor(private electronService: ElectronService) {
 
@@ -24,23 +24,7 @@ export class AppComponent {
         });
     }
 
-    public showConnection(connect: RedisClient) {
-        if (connect) {
-            this.connect = connect;
-        }
-
-        this.connect.keys('*', (err, keys) => {
-            if (err) return console.log(err);
-
-            this.keys = keys;
-        });
-    }
-
-    public getValue(key) {
-        this.connect.get(key, (err, value) => {
-            if (err) return console.log(err);
-
-            this.value = value;
-        });
+    public onConnect(connect: RedisClient) {
+        this.connection = connect;
     }
 }
