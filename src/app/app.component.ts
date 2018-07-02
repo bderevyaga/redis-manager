@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ElectronService} from './providers/electron.service';
 import {RedisClient} from 'redis';
-import {faDatabase} from '@fortawesome/free-solid-svg-icons';
+import {faDatabase, faTimes} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-root',
@@ -9,7 +9,7 @@ import {faDatabase} from '@fortawesome/free-solid-svg-icons';
     styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-    public faDatabase = faDatabase;
+    public icons = {faDatabase, faTimes};
     public connections: any[] = [];
     public connection: RedisClient;
 
@@ -17,14 +17,26 @@ export class AppComponent {
 
     }
 
-    public addConnection() {
+    public add() {
         this.connections.push({
             name: `connection ${this.connections.length}`,
             connect: this.electronService.redis.createClient()
         });
     }
 
-    public onConnect(connect: RedisClient) {
+    public close(connection) {
+        const index = this.connections.indexOf(connection);
+
+        this.connections.splice(index, 1);
+
+        if (this.connection === connection.connect) {
+            delete this.connection;
+        }
+
+        connection.connect.quit();
+    }
+
+    public connect(connect: RedisClient) {
         this.connection = connect;
     }
 }

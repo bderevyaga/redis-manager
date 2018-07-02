@@ -1,6 +1,6 @@
 import {Component, Input, ChangeDetectorRef} from '@angular/core';
 import {RedisClient} from 'redis';
-import {faSyncAlt} from '@fortawesome/free-solid-svg-icons';
+import {faHashtag, faTrashAlt, faSyncAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-conection',
@@ -8,7 +8,7 @@ import {faSyncAlt} from '@fortawesome/free-solid-svg-icons';
     styleUrls: ['./conection.component.less']
 })
 export class ConectionComponent {
-    public faSyncAlt = faSyncAlt;
+    public icons = {faSyncAlt, faHashtag, faTrashAlt};
     public keys: string[] = [];
     public value: any;
 
@@ -32,7 +32,13 @@ export class ConectionComponent {
         });
     }
 
-    public getValue(key) {
+    public del(key) {
+        this._connect.del(key, (err, redisValue) => {
+            this.show();
+        });
+    }
+
+    public get(key) {
         this._connect.get(key, (err, redisValue) => {
             this.value = redisValue;
             this.ref.detectChanges();

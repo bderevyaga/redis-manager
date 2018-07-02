@@ -1,5 +1,11 @@
+<button (click)="show()"><fa-icon [icon]="icons.faSyncAlt"></fa-icon></button>
 <div class="key">
-    <button (click)="show()"><fa-icon [icon]="faSyncAlt"></fa-icon></button>
-    <div *ngFor="let key of keys" (click)="getValue(key)">{{key}}</div>
+    <div class="key-item" *ngFor="let key of keys">
+        <fa-icon [icon]="icons.faHashtag"></fa-icon>
+        <span class="name" (click)="get(key)">{{key}}</span>
+        <span class="controls">
+            <fa-icon [icon]="icons.faTrashAlt" (click)="del(key)"></fa-icon>
+        </span>
+    </div>
 </div>
 <textarea>{{value}}</textarea>

@@ -1,9 +1,15 @@
 <nav class="control-list">
-    <button (click)="addConnection()">Add Connection</button>
+    <button (click)="add()">Add Connection</button>
 </nav>
 <div class="connect">
     <nav class="connection-list">
-        <div *ngFor="let connection of connections" (click)="onConnect(connection.connect)"><fa-icon [icon]="faDatabase"></fa-icon> {{connection.name}}</div>
+        <div class="connection-item" *ngFor="let connection of connections">
+            <fa-icon [icon]="icons.faDatabase"></fa-icon>
+            <span class="name" (click)="connect(connection.connect)">{{connection.name}}</span>
+            <span class="controls">
+                <fa-icon [icon]="icons.faTimes" (click)="close(connection)"></fa-icon>
+            </span>
+        </div>
     </nav>
     <app-conection *ngIf="connection" [connect]="connection"></app-conection>
 </div>

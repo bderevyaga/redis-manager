@@ -35,6 +35,26 @@
             overflow: auto;
 
             border: 1px solid #aaaaaa;
+            
+            .connection-item {
+                cursor: pointer;
+                padding: 2px;
+                border: 1px solid #aaa;
+
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-content: center;
+                align-items: center;
+
+                .name {
+                    order: 0;
+                    flex: 1 1 auto;
+                    align-self: auto;
+                    margin: 0 2px;
+                }
+            }
         }
     }
 }
