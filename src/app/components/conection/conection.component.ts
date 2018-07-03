@@ -1,6 +1,7 @@
-import {Component, Input, ChangeDetectorRef} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import {RedisClient} from 'redis';
-import {faHashtag, faTrashAlt, faSyncAlt} from '@fortawesome/free-solid-svg-icons';
+import {faHashtag, faTrashAlt, faSyncAlt, faEdit} from '@fortawesome/free-solid-svg-icons';
+import {ModalComponent} from '../modal/modal.component';
 
 @Component({
     selector: 'app-conection',
@@ -8,9 +9,12 @@ import {faHashtag, faTrashAlt, faSyncAlt} from '@fortawesome/free-solid-svg-icon
     styleUrls: ['./conection.component.less']
 })
 export class ConectionComponent {
-    public icons = {faSyncAlt, faHashtag, faTrashAlt};
-    public keys: string[] = [];
+    public icons = {faSyncAlt, faHashtag, faTrashAlt, faEdit};
+    public keyList: string[] = [];
     public value: any;
+
+    @ViewChild('new_key_modal')
+    public newKeyModal: ModalComponent;
 
     private _connect: RedisClient;
 
@@ -18,30 +22,32 @@ export class ConectionComponent {
     set connect(connect) {
         if (connect) {
             this._connect = connect;
-            this.show();
+            this.keys();
         }
     }
 
-    constructor(private ref: ChangeDetectorRef) {
+    public keys(pattern = '*') {
+        this._connect.keys(pattern, (err, redisKeys) => {
+            this.keyList = redisKeys;
+        });
     }
 
-    public show() {
-        this._connect.keys('*', (err, redisKeys) => {
-            this.keys = redisKeys;
-            this.ref.detectChanges();
+    public rename(newKey) {
+        const key = this.newKeyModal.close();
+        this._connect.rename(key, newKey, () => {
+            this.keys();
         });
     }
 
     public del(key) {
-        this._connect.del(key, (err, redisValue) => {
-            this.show();
+        this._connect.del(key, () => {
+            this.keys();
         });
     }
 
     public get(key) {
         this._connect.get(key, (err, redisValue) => {
             this.value = redisValue;
-            this.ref.detectChanges();
         });
     }
 }

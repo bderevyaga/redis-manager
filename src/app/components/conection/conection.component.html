@@ -1,11 +1,21 @@
-<button (click)="show()"><fa-icon [icon]="icons.faSyncAlt"></fa-icon></button>
+<button (click)="show()">
+    <fa-icon [icon]="icons.faSyncAlt"></fa-icon>
+</button>
 <div class="key">
-    <div class="key-item" *ngFor="let key of keys">
+    <div class="key-item" *ngFor="let key of keyList">
         <fa-icon [icon]="icons.faHashtag"></fa-icon>
         <span class="name" (click)="get(key)">{{key}}</span>
         <span class="controls">
+            <fa-icon [icon]="icons.faEdit" (click)="newKeyModal.show(key)"></fa-icon>
             <fa-icon [icon]="icons.faTrashAlt" (click)="del(key)"></fa-icon>
         </span>
     </div>
 </div>
-<textarea>{{value}}</textarea>
+<textarea [(ngModel)]="value"></textarea>
+<app-modal #new_key_modal>
+    <div>
+        <label for="key">new key</label>
+        <input id="key" type="text" #new_key_value/>
+    </div>
+    <button (click)="rename(new_key_value.value)">SET</button>
+</app-modal>
