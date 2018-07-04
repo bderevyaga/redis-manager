@@ -1,5 +1,5 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {faHashtag, faTrashAlt, faSyncAlt, faEdit, faSave} from '@fortawesome/free-solid-svg-icons';
+import {faHashtag, faTrashAlt, faSyncAlt, faEdit, faSave, faFile} from '@fortawesome/free-solid-svg-icons';
 import {ModalComponent} from '../modal/modal.component';
 import {RedisUtil} from '../../utils/redis.util';
 
@@ -9,14 +9,15 @@ import {RedisUtil} from '../../utils/redis.util';
     styleUrls: ['./conection.component.less']
 })
 export class ConectionComponent {
-    public icons = {faSyncAlt, faHashtag, faTrashAlt, faEdit, faSave};
+    public icons = {faSyncAlt, faHashtag, faTrashAlt, faEdit, faSave, faFile};
     public keyList: string[] = [];
     public value: string;
 
     private key: string;
 
-    @ViewChild('new_key_modal')
-    public newKeyModal: ModalComponent;
+    @ViewChild('new_key_modal') newKeyModal: ModalComponent;
+    @ViewChild('set_key_modal') setKeyModal: ModalComponent;
+
     private _connect: RedisUtil;
 
     @Input()
@@ -49,6 +50,8 @@ export class ConectionComponent {
     }
 
     public async set(key: string = this.key, value: string = this.value): Promise<void> {
+        this.setKeyModal.close();
+
         await this._connect.set(key, value);
         await this.keys();
     }

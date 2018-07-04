@@ -14,12 +14,12 @@ export class ModalComponent {
     @HostBinding('class.close')
     private _close = true;
 
-    public close() {
+    public close(): any {
         this._close = true;
         return this.value;
     }
 
-    public show(value?) {
+    public show(value?: any) {
         this.value = value;
         this._close = false;
     }
