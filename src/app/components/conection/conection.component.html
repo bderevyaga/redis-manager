@@ -11,6 +11,9 @@
         </span>
     </div>
 </div>
+<button (click)="set()">
+    <fa-icon [icon]="icons.faSave"></fa-icon>
+</button>
 <textarea [(ngModel)]="value"></textarea>
 <app-modal #new_key_modal>
     <div>

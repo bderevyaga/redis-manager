@@ -1,6 +1,5 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {RedisClient} from 'redis';
-import {faHashtag, faTrashAlt, faSyncAlt, faEdit} from '@fortawesome/free-solid-svg-icons';
+import {faHashtag, faTrashAlt, faSyncAlt, faEdit, faSave} from '@fortawesome/free-solid-svg-icons';
 import {ModalComponent} from '../modal/modal.component';
 import {RedisUtil} from '../../utils/redis.util';
 
@@ -10,17 +9,18 @@ import {RedisUtil} from '../../utils/redis.util';
     styleUrls: ['./conection.component.less']
 })
 export class ConectionComponent {
-    public icons = {faSyncAlt, faHashtag, faTrashAlt, faEdit};
+    public icons = {faSyncAlt, faHashtag, faTrashAlt, faEdit, faSave};
     public keyList: string[] = [];
-    public value: any;
+    public value: string;
+
+    private key: string;
 
     @ViewChild('new_key_modal')
     public newKeyModal: ModalComponent;
-
     private _connect: RedisUtil;
 
     @Input()
-    set connect(connect: RedisClient) {
+    set connect(connect) {
         if (connect) {
             this._connect = new RedisUtil(connect);
             this.keys();
@@ -43,7 +43,13 @@ export class ConectionComponent {
         await this.keys();
     }
 
-    public async get(key: string): Promise<void> {
+    public async get(key: string = this.key): Promise<void> {
+        this.key = key;
         this.value = await this._connect.get(key);
+    }
+
+    public async set(key: string = this.key, value: string = this.value): Promise<void> {
+        await this._connect.set(key, value);
+        await this.keys();
     }
 }

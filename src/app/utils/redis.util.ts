@@ -41,4 +41,13 @@ export class RedisUtil {
             });
         });
     }
+
+    public async set(key: string, value: string): Promise<'OK'> {
+        return await new Promise((resolve, reject) => {
+            this.connect.set(key, value, (err, reply) => {
+                err && reject(err);
+                resolve(reply);
+            });
+        });
+    }
 }
