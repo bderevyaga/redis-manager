@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {ElectronService} from './providers/electron.service';
 import {RedisClient} from 'redis';
 import {faDatabase, faTimes} from '@fortawesome/free-solid-svg-icons';
+import {ModalComponent} from './components/modal/modal.component';
 
 @Component({
     selector: 'app-root',
@@ -13,18 +14,20 @@ export class AppComponent {
     public connections: any[] = [];
     public connection: RedisClient;
 
+    @ViewChild('add_connect_modal') addConnectModal: ModalComponent;
+
     constructor(private electronService: ElectronService) {
 
     }
 
-    public add() {
-        this.connections.push({
-            name: `connection ${this.connections.length}`,
-            connect: this.electronService.redis.createClient()
-        });
+    public add(name: string, host: string, port: number): void {
+        this.addConnectModal.close();
+        const connect = this.electronService.redis.createClient(port, host);
+
+        this.connections.push({name, connect});
     }
 
-    public close(connection) {
+    public close(connection): void {
         const index = this.connections.indexOf(connection);
 
         this.connections.splice(index, 1);
@@ -36,7 +39,7 @@ export class AppComponent {
         connection.connect.quit();
     }
 
-    public connect(connect: RedisClient) {
+    public connect(connect: RedisClient): void {
         this.connection = connect;
     }
 }

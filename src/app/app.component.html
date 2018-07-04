@@ -1,5 +1,5 @@
 <nav class="control-list">
-    <button (click)="add()">Add Connection</button>
+    <button (click)="addConnectModal.show()">Add Connection</button>
 </nav>
 <div class="connect">
     <nav class="connection-list">
@@ -13,3 +13,18 @@
     </nav>
     <app-conection *ngIf="connection" [connect]="connection"></app-conection>
 </div>
+<app-modal #add_connect_modal>
+    <div>
+        <label for="connect-name">Name</label>
+        <input id="connect-name" type="text" [value]="'localhost'" #connect_name/>
+    </div>
+    <div>
+        <label for="connect-host">Host</label>
+        <input id="connect-host" type="text" [value]="'127.0.0.1'" #connect_host/>
+    </div>
+    <div>
+        <label for="connect-port">Port</label>
+        <input id="connect-port" type="number" [value]="6379" #connect_port/>
+    </div>
+    <button (click)="add(connect_name.value, connect_host.value, connect_port.value)">SET</button>
+</app-modal>
