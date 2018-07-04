@@ -4,7 +4,7 @@
 <div class="key">
     <div class="key-item" *ngFor="let key of keyList">
         <fa-icon [icon]="icons.faHashtag"></fa-icon>
-        <span class="name" (click)="get(key)">{{key}}</span>
+        <span class="name" (click)="get(key)" [title]="key">{{key}}</span>
         <span class="controls">
             <fa-icon [icon]="icons.faEdit" (click)="newKeyModal.show(key)"></fa-icon>
             <fa-icon [icon]="icons.faTrashAlt" (click)="del(key)"></fa-icon>

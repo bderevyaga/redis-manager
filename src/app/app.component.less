@@ -17,8 +17,6 @@
     }
 
     .connect {
-        padding: 5px;
-
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -30,12 +28,14 @@
         flex: 1 1 auto;
         align-self: auto;
 
+        padding: 5px;
+
         .connection-list {
             width: 200px;
             overflow: auto;
 
             border: 1px solid #aaaaaa;
-            
+
             .connection-item {
                 cursor: pointer;
                 padding: 2px;
@@ -48,11 +48,18 @@
                 align-content: center;
                 align-items: center;
 
+                * {
+                    white-space: nowrap;
+                }
+
                 .name {
                     order: 0;
                     flex: 1 1 auto;
                     align-self: auto;
                     margin: 0 2px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
             }
         }

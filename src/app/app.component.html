@@ -5,7 +5,7 @@
     <nav class="connection-list">
         <div class="connection-item" *ngFor="let connection of connections">
             <fa-icon [icon]="icons.faDatabase"></fa-icon>
-            <span class="name" (click)="connect(connection.connect)">{{connection.name}}</span>
+            <span class="name" (click)="connect(connection.connect)" [title]="connection.name">{{connection.name}}</span>
             <span class="controls">
                 <fa-icon [icon]="icons.faTimes" (click)="close(connection)"></fa-icon>
             </span>
