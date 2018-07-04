@@ -2,6 +2,7 @@ import {Component, Input, ViewChild} from '@angular/core';
 import {RedisClient} from 'redis';
 import {faHashtag, faTrashAlt, faSyncAlt, faEdit} from '@fortawesome/free-solid-svg-icons';
 import {ModalComponent} from '../modal/modal.component';
+import {RedisUtil} from '../../utils/redis.util';
 
 @Component({
     selector: 'app-conection',
@@ -16,38 +17,33 @@ export class ConectionComponent {
     @ViewChild('new_key_modal')
     public newKeyModal: ModalComponent;
 
-    private _connect: RedisClient;
+    private _connect: RedisUtil;
 
     @Input()
-    set connect(connect) {
+    set connect(connect: RedisClient) {
         if (connect) {
-            this._connect = connect;
+            this._connect = new RedisUtil(connect);
             this.keys();
         }
     }
 
-    public keys(pattern = '*') {
-        this._connect.keys(pattern, (err, redisKeys) => {
-            this.keyList = redisKeys;
-        });
+    public async keys(pattern: string = '*'): Promise<void> {
+        this.keyList = await this._connect.keys(pattern);
     }
 
-    public rename(newKey) {
+    public async rename(newKey: string): Promise<void> {
         const key = this.newKeyModal.close();
-        this._connect.rename(key, newKey, () => {
-            this.keys();
-        });
+
+        await this._connect.rename(key, newKey);
+        await this.keys();
     }
 
-    public del(key) {
-        this._connect.del(key, () => {
-            this.keys();
-        });
+    public async del(key: string): Promise<void> {
+        await this._connect.del(key);
+        await this.keys();
     }
 
-    public get(key) {
-        this._connect.get(key, (err, redisValue) => {
-            this.value = redisValue;
-        });
+    public async get(key: string): Promise<void> {
+        this.value = await this._connect.get(key);
     }
 }
