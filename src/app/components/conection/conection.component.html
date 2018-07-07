@@ -7,23 +7,26 @@
 <div class="key">
     <div class="key-item" *ngFor="let key of keyList">
         <fa-icon [icon]="icons.faHashtag"></fa-icon>
-        <span class="name" (click)="get(key)" [title]="key">{{key}}</span>
+        <span class="name" (click)="redisGet(key).catch()" [title]="key">{{key}}</span>
         <span class="controls">
             <fa-icon [icon]="icons.faEdit" (click)="newKeyModal.show(key)"></fa-icon>
-            <fa-icon [icon]="icons.faTrashAlt" (click)="del(key)"></fa-icon>
+            <fa-icon [icon]="icons.faTrashAlt" (click)="redisDel(key).catch()"></fa-icon>
         </span>
     </div>
 </div>
 <button (click)="set()">
     <fa-icon [icon]="icons.faSave"></fa-icon>
 </button>
-<textarea [(ngModel)]="value"></textarea>
+<div class="value">
+    <label for="value">Value</label>
+    <textarea id="value" [(ngModel)]="value"></textarea>
+</div>
 <app-modal #new_key_modal>
     <div>
         <label for="key">new key</label>
         <input id="key" type="text" #new_key_value/>
     </div>
-    <button (click)="rename(new_key_value.value)">SET</button>
+    <button (click)="redisRename(new_key_value.value).catch()">SET</button>
 </app-modal>
 <app-modal #set_key_modal>
     <div>
@@ -31,8 +34,8 @@
         <input id="key-name" type="text" #key_name/>
     </div>
     <div>
-        <label for="value">Value</label>
-        <textarea id="value" #key_value></textarea>
+        <label for="key-value">Value</label>
+        <textarea id="key-value" #key_value></textarea>
     </div>
-    <button (click)="set(key_name.value, key_value.value)">SET</button>
+    <button (click)="redisSet(key_name.value, key_value.value).catch()">SET</button>
 </app-modal>

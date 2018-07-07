@@ -24,35 +24,35 @@ export class ConectionComponent {
     set connect(connect) {
         if (connect) {
             this._connect = new RedisUtil(connect);
-            this.keys();
+            this.redisKeys().catch();
         }
     }
 
-    public async keys(pattern: string = '*'): Promise<void> {
+    public async redisKeys(pattern: string = '*'): Promise<void> {
         this.keyList = await this._connect.keys(pattern);
     }
 
-    public async rename(newKey: string): Promise<void> {
+    public async redisRename(newKey: string): Promise<void> {
         const key = this.newKeyModal.close();
 
         await this._connect.rename(key, newKey);
-        await this.keys();
+        await this.redisKeys();
     }
 
-    public async del(key: string): Promise<void> {
+    public async redisDel(key: string): Promise<void> {
         await this._connect.del(key);
-        await this.keys();
+        await this.redisKeys();
     }
 
-    public async get(key: string = this.key): Promise<void> {
+    public async redisGet(key: string = this.key): Promise<void> {
         this.key = key;
         this.value = await this._connect.get(key);
     }
 
-    public async set(key: string = this.key, value: string = this.value): Promise<void> {
+    public async redisSet(key: string = this.key, value: string = this.value): Promise<void> {
         this.setKeyModal.close();
 
         await this._connect.set(key, value);
-        await this.keys();
+        await this.redisKeys();
     }
 }
