@@ -1,0 +1,33 @@
+app-modal {
+    .input-item {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: stretch;
+
+        label {
+            margin-bottom: 3px;
+        }
+
+        textarea {
+            height: 60px;
+        }
+
+        & + .input-item {
+            margin-top: 10px;
+        }
+    }
+
+    .controls {
+        margin-top: 20px;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        align-content: center;
+        align-items: center;
+    }
+}

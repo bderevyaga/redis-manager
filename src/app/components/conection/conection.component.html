@@ -22,20 +22,24 @@
     <textarea id="value" [(ngModel)]="value"></textarea>
 </div>
 <app-modal #new_key_modal>
-    <div>
+    <div class="input-item">
         <label for="key">new key</label>
         <input id="key" type="text" #new_key_value/>
     </div>
-    <button (click)="redisRename(new_key_value.value).catch()">SET</button>
+    <div class="controls">
+        <button (click)="redisRename(new_key_value.value).catch()">SET</button>
+    </div>
 </app-modal>
 <app-modal #set_key_modal>
-    <div>
+    <div class="input-item">
         <label for="key-name">Key</label>
         <input id="key-name" type="text" #key_name/>
     </div>
-    <div>
+    <div class="input-item">
         <label for="key-value">Value</label>
         <textarea id="key-value" #key_value></textarea>
     </div>
-    <button (click)="redisSet(key_name.value, key_value.value).catch()">SET</button>
+    <div class="controls">
+        <button (click)="redisSet(key_name.value, key_value.value).catch()">SET</button>
+    </div>
 </app-modal>

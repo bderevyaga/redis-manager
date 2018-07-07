@@ -7,7 +7,7 @@ import {ModalComponent} from './components/modal/modal.component';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.less']
+    styleUrls: ['./app.component.less', './styles/modal.style.less']
 })
 export class AppComponent {
     public icons = {faDatabase, faTimes};
