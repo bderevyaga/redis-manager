@@ -7,7 +7,7 @@
             <fa-icon [icon]="icons.faDatabase"></fa-icon>
             <span class="name" (click)="connect(connection.connect)" [title]="connection.name">{{connection.name}}</span>
             <span class="controls">
-                <fa-icon [icon]="icons.faTimes" (click)="close(connection)"></fa-icon>
+                <fa-icon [icon]="icons.faTimes" (click)="closeConnect(connection)"></fa-icon>
             </span>
         </div>
     </nav>
@@ -27,6 +27,6 @@
         <input id="connect-port" type="number" [value]="6379" #connect_port/>
     </div>
     <div class="controls">
-        <button (click)="add(connect_name.value, connect_host.value, connect_port.value)">SET</button>
+        <button (click)="addConnect(connect_name.value, connect_host.value, connect_port.value)">SET</button>
     </div>
 </app-modal>

@@ -20,14 +20,14 @@ export class AppComponent {
 
     }
 
-    public add(name: string, host: string, port: number): void {
+    public addConnect(name: string, host: string, port: number): void {
         this.addConnectModal.close();
-        const connect = this.electronService.redis.createClient(port, host);
+        const connect = (<any>this.electronService.redis).createClient(port, host);
 
         this.connections.push({name, connect});
     }
 
-    public close(connection): void {
+    public closeConnect(connection): void {
         const index = this.connections.indexOf(connection);
 
         this.connections.splice(index, 1);
