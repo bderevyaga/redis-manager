@@ -6,46 +6,61 @@ export class RedisUtil {
 
     }
 
-    public async keys(pattern: string): Promise<string[]> {
-        return await new Promise((resolve, reject) => {
+    public keys(pattern: string): Promise<string[]> {
+        return new Promise((resolve, reject) => {
             this.connect.keys(pattern, (err, reply) => {
-                err && reject(err);
+                if (err) {
+                    reject(err);
+                }
+
                 resolve(reply);
             });
         });
     }
 
-    public async rename(key: string, newkey: string): Promise<'OK'> {
-        return await new Promise((resolve, reject) => {
+    public rename(key: string, newkey: string): Promise<'OK'> {
+        return new Promise((resolve, reject) => {
             this.connect.rename(key, newkey, (err, reply) => {
-                err && reject(err);
+                if (err) {
+                    reject(err);
+                }
+
                 resolve(reply);
             });
         });
     }
 
-    public async del(key: string): Promise<any> {
-        return await new Promise((resolve, reject) => {
+    public del(key: string): Promise<any> {
+        return new Promise((resolve, reject) => {
             this.connect.del(key, (err, reply) => {
-                err && reject(err);
+                if (err) {
+                    reject(err);
+                }
+
                 resolve(reply);
             });
         });
     }
 
-    public async get(key: string): Promise<string> {
-        return await new Promise((resolve, reject) => {
+    public get(key: string): Promise<string> {
+        return new Promise((resolve, reject) => {
             this.connect.get(key, (err, reply) => {
-                err && reject(err);
+                if (err) {
+                    reject(err);
+                }
+
                 resolve(reply);
             });
         });
     }
 
-    public async set(key: string, value: string): Promise<'OK'> {
-        return await new Promise((resolve, reject) => {
+    public set(key: string, value: string): Promise<'OK'> {
+        return new Promise((resolve, reject) => {
             this.connect.set(key, value, (err, reply) => {
-                err && reject(err);
+                if (err) {
+                    reject(err);
+                }
+
                 resolve(reply);
             });
         });

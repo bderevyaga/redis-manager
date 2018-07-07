@@ -3,7 +3,7 @@ import * as redis from 'redis';
 
 @Injectable()
 export class ElectronService {
-    public redis: redis;
+    public redis: typeof redis;
 
     constructor() {
         if (this.isElectron()) {
