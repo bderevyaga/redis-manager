@@ -7,20 +7,14 @@
 <div class="key">
     <div class="key-item" *ngFor="let key of keyList">
         <fa-icon [icon]="icons.faHashtag"></fa-icon>
-        <span class="name" (click)="redisGet(key).catch()" [title]="key">{{key}}</span>
+        <span class="name" (click)="redisKey = key" [title]="key">{{key}}</span>
         <span class="controls">
             <fa-icon [icon]="icons.faEdit" (click)="newKeyModal.show(key)"></fa-icon>
             <fa-icon [icon]="icons.faTrashAlt" (click)="redisDel(key).catch()"></fa-icon>
         </span>
     </div>
 </div>
-<button (click)="set()">
-    <fa-icon [icon]="icons.faSave"></fa-icon>
-</button>
-<div class="value">
-    <label for="value">Value</label>
-    <textarea id="value" [(ngModel)]="value"></textarea>
-</div>
+<app-value [connect]="_connect" [key]="redisKey"></app-value>
 <app-modal #new_key_modal>
     <div class="input-item">
         <label for="key">new key</label>

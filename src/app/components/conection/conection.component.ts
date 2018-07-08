@@ -11,9 +11,7 @@ import {RedisUtil} from '../../utils/redis.util';
 export class ConectionComponent {
     public icons = {faSyncAlt, faHashtag, faTrashAlt, faEdit, faSave, faFile};
     public keyList: string[] = [];
-    public value: string;
-
-    private key: string;
+    public redisKey: string;
 
     @ViewChild('new_key_modal') newKeyModal: ModalComponent;
     @ViewChild('set_key_modal') setKeyModal: ModalComponent;
@@ -44,12 +42,7 @@ export class ConectionComponent {
         await this.redisKeys();
     }
 
-    public async redisGet(key: string = this.key): Promise<void> {
-        this.key = key;
-        this.value = await this._connect.get(key);
-    }
-
-    public async redisSet(key: string = this.key, value: string = this.value): Promise<void> {
+    public async redisSet(key: string, value: string): Promise<void> {
         this.setKeyModal.close();
 
         await this._connect.set(key, value);
