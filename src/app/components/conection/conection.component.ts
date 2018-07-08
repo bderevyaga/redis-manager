@@ -6,7 +6,11 @@ import {RedisUtil} from '../../utils/redis.util';
 @Component({
     selector: 'app-conection',
     templateUrl: './conection.component.html',
-    styleUrls: ['./conection.component.less', '../../styles/modal.style.less']
+    styleUrls: [
+        './conection.component.less',
+        '../../styles/modal.style.less',
+        '../../styles/list.style.less'
+    ]
 })
 export class ConectionComponent {
     public icons = {faSyncAlt, faHashtag, faTrashAlt, faEdit, faSave, faFile};

@@ -2,16 +2,16 @@
     <button (click)="addConnectModal.show()">Add Connection</button>
 </nav>
 <div class="connect">
-    <nav class="connection-list">
-        <div class="connection-item" *ngFor="let connection of connections">
+    <div class="list">
+        <div class="list-item" *ngFor="let connection of connections" [ngClass]="{active: connection?.connect.connection_id === redisConnection?.connection_id}">
             <fa-icon [icon]="icons.faDatabase"></fa-icon>
             <span class="name" (click)="connect(connection.connect)" [title]="connection.name">{{connection.name}}</span>
             <span class="controls">
                 <fa-icon [icon]="icons.faTimes" (click)="closeConnect(connection)"></fa-icon>
             </span>
         </div>
-    </nav>
-    <app-conection *ngIf="connection" [connect]="connection"></app-conection>
+    </div>
+    <app-conection *ngIf="redisConnection" [connect]="redisConnection"></app-conection>
 </div>
 <app-modal #add_connect_modal>
     <div class="input-item">

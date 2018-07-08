@@ -7,12 +7,16 @@ import {ModalComponent} from './components/modal/modal.component';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.less', './styles/modal.style.less']
+    styleUrls: [
+        './app.component.less',
+        './styles/modal.style.less',
+        './styles/list.style.less'
+    ]
 })
 export class AppComponent {
     public icons = {faDatabase, faTimes};
     public connections: any[] = [];
-    public connection: RedisClient;
+    public redisConnection: RedisClient;
 
     @ViewChild('add_connect_modal') addConnectModal: ModalComponent;
 
@@ -32,14 +36,14 @@ export class AppComponent {
 
         this.connections.splice(index, 1);
 
-        if (this.connection === connection.connect) {
-            delete this.connection;
+        if (this.redisConnection === connection.connect) {
+            delete this.redisConnection;
         }
 
         connection.connect.quit();
     }
 
     public connect(connect: RedisClient): void {
-        this.connection = connect;
+        this.redisConnection = connect;
     }
 }

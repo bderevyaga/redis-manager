@@ -1,0 +1,37 @@
+.list {
+    width: 200px;
+    border: 1px solid #aaaaaa;
+
+    .list-item {
+        padding: 2px;
+        border: 1px solid #aaa;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-content: center;
+        align-items: center;
+
+        &.active {
+            background-color: #9e9e9e;
+        }
+
+        * {
+            white-space: nowrap;
+        }
+
+        .name, .controls {
+            cursor: pointer;
+        }
+
+        .name {
+            order: 0;
+            flex: 1 1 auto;
+            align-self: auto;
+            margin: 0 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

@@ -29,43 +29,6 @@
         align-self: auto;
 
         padding: 5px;
-
-        .connection-list {
-            width: 200px;
-            overflow: auto;
-
-            border: 1px solid #aaaaaa;
-
-            .connection-item {
-                padding: 2px;
-                border: 1px solid #aaa;
-
-                display: flex;
-                flex-direction: row;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                align-content: center;
-                align-items: center;
-
-                * {
-                    white-space: nowrap;
-                }
-
-                .name, .controls {
-                    cursor: pointer;
-                }
-
-                .name {
-                    order: 0;
-                    flex: 1 1 auto;
-                    align-self: auto;
-                    margin: 0 2px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                }
-            }
-        }
     }
 
     app-conection {

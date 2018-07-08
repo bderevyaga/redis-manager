@@ -4,8 +4,8 @@
 <button (click)="setKeyModal.show()">
     <fa-icon [icon]="icons.faFile"></fa-icon>
 </button>
-<div class="key">
-    <div class="key-item" *ngFor="let key of keyList">
+<div class="list">
+    <div class="list-item" *ngFor="let key of keyList" [ngClass]="{active: redisKey === key}">
         <fa-icon [icon]="icons.faHashtag"></fa-icon>
         <span class="name" (click)="redisKey = key" [title]="key">{{key}}</span>
         <span class="controls">
