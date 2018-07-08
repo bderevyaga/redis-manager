@@ -1,5 +1,8 @@
-<label for="value">Value</label>
+<div class="name">
+    <label for="value">Value</label>
+    <button (click)="redisSet().catch()">
+        <fa-icon [icon]="icons.faSave"></fa-icon>
+    </button>
+</div>
 <textarea id="value" [(ngModel)]="value"></textarea>
-<button (click)="redisSet().catch()">
-    <fa-icon [icon]="icons.faSave"></fa-icon>
-</button>
+

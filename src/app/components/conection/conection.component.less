@@ -6,6 +6,30 @@
     align-content: center;
     align-items: stretch;
 
+    .key-list {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: center;
+        align-items: stretch;
+
+        .name {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+        }
+
+        .list {
+            order: 0;
+            flex: 1 1 auto;
+            align-self: auto;
+        }
+    }
+
     app-value {
         order: 0;
         flex: 1 1 auto;
