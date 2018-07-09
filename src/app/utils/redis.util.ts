@@ -65,4 +65,16 @@ export class RedisUtil {
             });
         });
     }
+
+    public bitcount(key: string): Promise<number> {
+        return new Promise((resolve, reject) => {
+            this.connect.bitcount(key, (err, reply) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(reply);
+            });
+        });
+    }
 }

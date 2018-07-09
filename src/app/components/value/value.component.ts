@@ -11,6 +11,7 @@ import {RedisUtil} from '../../utils/redis.util';
 export class ValueComponent {
     public icons = {faSave};
     public value: string;
+    public bitcount: number;
 
     private _key: string;
 
@@ -21,13 +22,20 @@ export class ValueComponent {
         this._key = key;
 
         this.redisGet(key).catch();
+        this.redisBitcount(key).catch();
     }
 
     public async redisGet(key: string = this._key): Promise<void> {
         this.value = await this.connect.get(key);
     }
 
+    public async redisBitcount(key: string = this._key): Promise<void> {
+        this.bitcount = await this.connect.bitcount(key);
+    }
+
     public async redisSet(key: string = this._key, value: string = this.value): Promise<void> {
         await this.connect.set(key, value);
+
+        this.redisBitcount(key).catch();
     }
 }
