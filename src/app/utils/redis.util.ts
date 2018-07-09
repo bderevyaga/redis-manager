@@ -77,4 +77,28 @@ export class RedisUtil {
             });
         });
     }
+
+    public strlen(key: string): Promise<number> {
+        return new Promise((resolve, reject) => {
+            this.connect.strlen(key, (err, reply) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(reply);
+            });
+        });
+    }
+
+    public info(): Promise<string> {
+        return new Promise((resolve, reject) => {
+            this.connect.info((err, reply) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(reply);
+            });
+        });
+    }
 }

@@ -8,6 +8,7 @@
             <span class="name" (click)="connect(connection.connect)" [title]="connection.name">{{connection.name}}</span>
             <span class="controls">
                 <fa-icon [icon]="icons.faTimes" (click)="closeConnect(connection)"></fa-icon>
+                <fa-icon [icon]="icons.faInfoCircle" (click)="redisInfo(connection.connect)"></fa-icon>
             </span>
         </div>
     </div>
@@ -29,4 +30,8 @@
     <div class="controls">
         <button (click)="addConnect(connect_name.value, connect_host.value, connect_port.value)">SET</button>
     </div>
+</app-modal>
+
+<app-modal #connect_info_modal>
+    <pre>{{connectInfo}}</pre>
 </app-modal>

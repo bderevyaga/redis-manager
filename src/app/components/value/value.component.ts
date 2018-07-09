@@ -12,6 +12,7 @@ export class ValueComponent {
     public icons = {faSave};
     public value: string;
     public bitcount: number;
+    public strlen: number;
 
     private _key: string;
 
@@ -23,6 +24,7 @@ export class ValueComponent {
 
         this.redisGet(key).catch();
         this.redisBitcount(key).catch();
+        this.redisStrlen(key).catch();
     }
 
     public async redisGet(key: string = this._key): Promise<void> {
@@ -33,9 +35,14 @@ export class ValueComponent {
         this.bitcount = await this.connect.bitcount(key);
     }
 
+    public async redisStrlen(key: string = this._key): Promise<void> {
+        this.strlen = await this.connect.strlen(key);
+    }
+
     public async redisSet(key: string = this._key, value: string = this.value): Promise<void> {
         await this.connect.set(key, value);
 
         this.redisBitcount(key).catch();
+        this.redisStrlen(key).catch();
     }
 }
