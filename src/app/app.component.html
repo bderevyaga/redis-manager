@@ -27,8 +27,12 @@
         <label for="connect-port">Port</label>
         <input id="connect-port" type="number" [value]="6379" #connect_port/>
     </div>
+    <div class="input-item">
+        <label for="connect-pass">Password</label>
+        <input id="connect-pass" type="text" #connect_pass/>
+    </div>
     <div class="controls">
-        <button (click)="addConnect(connect_name.value, connect_host.value, connect_port.value)">SET</button>
+        <button (click)="addConnect(connect_name.value, connect_host.value, connect_port.value, connect_pass.value)">SET</button>
     </div>
 </app-modal>
 

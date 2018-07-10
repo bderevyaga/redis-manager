@@ -1,4 +1,4 @@
-import {RedisClient} from 'redis';
+import {RedisClient, ServerInfo} from 'redis';
 
 export class RedisUtil {
 
@@ -90,7 +90,19 @@ export class RedisUtil {
         });
     }
 
-    public info(): Promise<string> {
+    public scan(pattern: string): Promise<string[]> {
+        return new Promise((resolve, reject) => {
+            this.connect.scan('0', 'MATCH', pattern, 'COUNT', '50', (err, reply) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(reply[1]);
+            });
+        });
+    }
+
+    public info(): Promise<ServerInfo> {
         return new Promise((resolve, reject) => {
             this.connect.info((err, reply) => {
                 if (err) {

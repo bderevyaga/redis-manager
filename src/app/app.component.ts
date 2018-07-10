@@ -27,15 +27,15 @@ export class AppComponent {
 
     }
 
-    public addConnect(name: string, host: string, port: number): void {
+    public addConnect(name: string, host: string, port: number, password: string = null): void {
         this.addConnectModal.close();
-        const connect = (<any>this.electronService.redis).createClient(port, host);
+        const connect = (<any>this.electronService.redis).createClient(port, host, {password});
 
         this.connections.push({name, connect});
     }
 
     public async redisInfo(connect: RedisClient) {
-        this.connectInfo = await new RedisUtil(connect).info();
+        this.connectInfo = await (<any>new RedisUtil(connect)).info();
         this.connectInfoModal.show();
     }
 

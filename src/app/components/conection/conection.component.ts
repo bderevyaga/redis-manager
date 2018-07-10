@@ -31,7 +31,7 @@ export class ConectionComponent {
     }
 
     public async redisKeys(pattern: string = '*'): Promise<void> {
-        this.keyList = await this._connect.keys(pattern);
+        this.keyList = await this._connect.scan(pattern);
     }
 
     public async redisRename(newKey: string): Promise<void> {
