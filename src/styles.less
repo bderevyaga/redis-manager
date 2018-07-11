@@ -32,10 +32,10 @@ ol, ul {
 blockquote, q {
 	quotes: none;
 }
-blockquote:before, blockquote:after,
+blockquote:before,
+blockquote:after,
 q:before, q:after {
 	content: '';
-	content: none;
 }
 table {
 	border-collapse: collapse;
@@ -44,4 +44,20 @@ table {
 
 html, body {
 	height: 100%;
+	font-family: 'Arial', sans-serif;
+
+	::-webkit-scrollbar {
+		width: 5px;
+		height: 5px;
+	}
+
+	::-webkit-scrollbar-track {
+		background-color: transparent;
+		border-radius: 5px;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: rgba(0, 0, 0, 0.4);
+		border-radius: 5px;
+	}
 }

@@ -1,12 +1,10 @@
 .list {
     width: 200px;
     border: 1px solid #aaaaaa;
+    border-radius: 2px;
     overflow: auto;
 
     .list-item {
-        padding: 2px;
-        border: 1px solid #aaa;
-
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -14,8 +12,11 @@
         align-content: center;
         align-items: center;
 
+        padding: 2px;
+        margin: 2px;
+
         &.active {
-            background-color: #9e9e9e;
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
         * {
@@ -24,6 +25,12 @@
 
         .name, .controls {
             cursor: pointer;
+        }
+
+        .controls {
+            * + * {
+                margin-left: 3px;
+            }
         }
 
         .name {

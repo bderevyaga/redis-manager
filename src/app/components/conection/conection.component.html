@@ -1,13 +1,9 @@
 <div class="key-list">
     <div class="name">
         <label>Key list</label>
-        <div>
-            <button (click)="show()">
-                <fa-icon [icon]="icons.faSyncAlt"></fa-icon>
-            </button>
-            <button (click)="setKeyModal.show()">
-                <fa-icon [icon]="icons.faFile"></fa-icon>
-            </button>
+        <div class="controls">
+            <fa-icon [icon]="icons.faSyncAlt" (click)="show()"></fa-icon>
+            <fa-icon [icon]="icons.faFile" (click)="setKeyModal.show()"></fa-icon>
         </div>
     </div>
     <div class="list">
@@ -15,9 +11,9 @@
             <fa-icon [icon]="icons.faHashtag"></fa-icon>
             <span class="name" (click)="redisKey = key" [title]="key">{{key}}</span>
             <span class="controls">
-            <fa-icon [icon]="icons.faEdit" (click)="newKeyModal.show(key)"></fa-icon>
-            <fa-icon [icon]="icons.faTrashAlt" (click)="redisDel(key).catch()"></fa-icon>
-        </span>
+                <fa-icon [icon]="icons.faEdit" (click)="newKeyModal.show(key)"></fa-icon>
+                <fa-icon [icon]="icons.faTrashAlt" (click)="redisDel(key).catch()"></fa-icon>
+            </span>
         </div>
     </div>
 </div>

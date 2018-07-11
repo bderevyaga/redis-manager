@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {ElectronService} from './providers/electron.service';
 import {RedisClient} from 'redis';
-import {faDatabase, faTimes, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import {faDatabase, faTimes, faInfoCircle, faAddressBook} from '@fortawesome/free-solid-svg-icons';
 import {ModalComponent} from './components/modal/modal.component';
 import {RedisUtil} from './utils/redis.util';
 
@@ -15,7 +15,7 @@ import {RedisUtil} from './utils/redis.util';
     ]
 })
 export class AppComponent {
-    public icons = {faDatabase, faTimes, faInfoCircle};
+    public icons = {faDatabase, faTimes, faInfoCircle, faAddressBook};
     public connections: any[] = [];
     public redisConnection: RedisClient;
     public connectInfo: string;

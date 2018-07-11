@@ -1,15 +1,20 @@
-<nav class="control-list">
-    <button (click)="addConnectModal.show()">Add Connection</button>
-</nav>
 <div class="connect">
-    <div class="list">
-        <div class="list-item" *ngFor="let connection of connections" [ngClass]="{active: connection?.connect.connection_id === redisConnection?.connection_id}">
-            <fa-icon [icon]="icons.faDatabase"></fa-icon>
-            <span class="name" (click)="connect(connection.connect)" [title]="connection.name">{{connection.name}}</span>
-            <span class="controls">
+    <div class="connections">
+        <div class="name">
+            <label for="value"></label>
+            <div class="controls">
+                <fa-icon [icon]="icons.faAddressBook" (click)="addConnectModal.show()"></fa-icon>
+            </div>
+        </div>
+        <div class="list">
+            <div class="list-item" *ngFor="let connection of connections" [ngClass]="{active: connection?.connect.connection_id === redisConnection?.connection_id}">
+                <fa-icon [icon]="icons.faDatabase"></fa-icon>
+                <span class="name" (click)="connect(connection.connect)" [title]="connection.name">{{connection.name}}</span>
+                <span class="controls">
                 <fa-icon [icon]="icons.faTimes" (click)="closeConnect(connection)"></fa-icon>
                 <fa-icon [icon]="icons.faInfoCircle" (click)="redisInfo(connection.connect)"></fa-icon>
             </span>
+            </div>
         </div>
     </div>
     <app-conection *ngIf="redisConnection" [connect]="redisConnection"></app-conection>
@@ -35,7 +40,6 @@
         <button (click)="addConnect(connect_name.value, connect_host.value, connect_port.value, connect_pass.value)">SET</button>
     </div>
 </app-modal>
-
 <app-modal #connect_info_modal>
     <pre>{{connectInfo}}</pre>
 </app-modal>

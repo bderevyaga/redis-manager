@@ -1,8 +1,8 @@
 <div class="name">
     <label for="value">Value: [len: {{strlen}}] [bit: {{bitcount}}]</label>
-    <button (click)="redisSet().catch()">
-        <fa-icon [icon]="icons.faSave"></fa-icon>
-    </button>
+    <div class="controls">
+        <fa-icon [icon]="icons.faSave" (click)="redisSet().catch()"></fa-icon>
+    </div>
 </div>
 <textarea id="value" [(ngModel)]="value"></textarea>
 

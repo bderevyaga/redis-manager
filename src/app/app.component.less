@@ -8,14 +8,6 @@
     align-content: center;
     align-items: stretch;
 
-    .control-list {
-        padding: 5px;
-
-        button {
-            height: 30px;
-        }
-    }
-
     .connect {
         display: flex;
         flex-direction: row;
@@ -23,6 +15,38 @@
         justify-content: flex-start;
         align-content: center;
         align-items: stretch;
+
+        .connections {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-content: center;
+            align-items: stretch;
+
+            .name {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-content: center;
+                align-items: center;
+
+                margin: 0 4px;
+
+                .controls {
+                    * + * {
+                        margin-left: 3px;
+                    }
+                }
+            }
+
+            .list {
+                order: 0;
+                flex: 1 1 auto;
+                align-self: auto;
+            }
+        }
 
         order: 0;
         flex: 1 1 auto;
