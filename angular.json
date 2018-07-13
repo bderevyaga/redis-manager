@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ang-electron": {
+    "redis-manager": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ang-electron:build"
+            "browserTarget": "redis-manager:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ang-electron:build:production"
+              "browserTarget": "redis-manager:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ang-electron:build"
+            "browserTarget": "redis-manager:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "ang-electron-e2e": {
+    "redis-manager-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ang-electron:serve"
+            "devServerTarget": "redis-manager:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ang-electron:serve:production"
+              "devServerTarget": "redis-manager:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "ang-electron"
+  "defaultProject": "redis-manager"
 }

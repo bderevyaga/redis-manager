@@ -1,7 +1,7 @@
 {
-  "name": "angular-electron-quick-start",
+  "name": "redis-manager",
   "version": "1.0.0",
-  "description": "A minimal Angular Electron application",
+  "description": "Redis manager",
   "main": "main.js",
   "browser": {
     "fs": false,
