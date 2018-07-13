@@ -1,5 +1,5 @@
-import {Component, HostBinding} from '@angular/core';
-import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import { Component, HostBinding } from '@angular/core';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-modal',
@@ -8,7 +8,7 @@ import {faTimes} from '@fortawesome/free-solid-svg-icons';
 })
 
 export class ModalComponent {
-    public icons = {faTimes};
+    public icons = { faTimes };
     public value: any;
 
     @HostBinding('class.close')

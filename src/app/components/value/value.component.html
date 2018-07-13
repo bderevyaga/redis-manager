@@ -1,6 +1,7 @@
 <div class="name">
     <label for="value">Value: [len: {{strlen}}] [bit: {{bitcount}}]</label>
     <div class="controls">
+        <fa-icon [icon]="icons.faSyncAlt" (click)="redisGet().catch()"></fa-icon>
         <fa-icon [icon]="icons.faSave" (click)="redisSet().catch()"></fa-icon>
     </div>
 </div>

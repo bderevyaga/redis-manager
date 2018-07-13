@@ -1,9 +1,9 @@
-import {Component, ViewChild} from '@angular/core';
-import {ElectronService} from './providers/electron.service';
-import {RedisClient} from 'redis';
-import {faDatabase, faTimes, faInfoCircle, faAddressBook} from '@fortawesome/free-solid-svg-icons';
-import {ModalComponent} from './components/modal/modal.component';
-import {RedisUtil} from './utils/redis.util';
+import { Component, ViewChild } from '@angular/core';
+import { ElectronService } from './providers/electron.service';
+import { RedisClient } from 'redis';
+import { faDatabase, faTimes, faInfoCircle, faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import { ModalComponent } from './components/modal/modal.component';
+import { RedisUtil } from './utils/redis.util';
 
 @Component({
     selector: 'app-root',
@@ -15,7 +15,7 @@ import {RedisUtil} from './utils/redis.util';
     ]
 })
 export class AppComponent {
-    public icons = {faDatabase, faTimes, faInfoCircle, faAddressBook};
+    public icons = { faDatabase, faTimes, faInfoCircle, faAddressBook };
     public connections: any[] = [];
     public redisConnection: RedisClient;
     public connectInfo: string;
@@ -29,9 +29,9 @@ export class AppComponent {
 
     public addConnect(name: string, host: string, port: number, password: string = null): void {
         this.addConnectModal.close();
-        const connect = (<any>this.electronService.redis).createClient(port, host, {password});
+        const connect = (<any>this.electronService.redis).createClient(port, host, { password });
 
-        this.connections.push({name, connect});
+        this.connections.push({ name, connect });
     }
 
     public async redisInfo(connect: RedisClient) {

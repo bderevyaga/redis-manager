@@ -1,7 +1,7 @@
-import {Component, Input, ViewChild} from '@angular/core';
-import {faHashtag, faTrashAlt, faSyncAlt, faEdit, faSave, faFile} from '@fortawesome/free-solid-svg-icons';
-import {ModalComponent} from '../modal/modal.component';
-import {RedisUtil} from '../../utils/redis.util';
+import { Component, Input, ViewChild } from '@angular/core';
+import { faHashtag, faTrashAlt, faSyncAlt, faEdit, faSave, faFile } from '@fortawesome/free-solid-svg-icons';
+import { ModalComponent } from '../modal/modal.component';
+import { RedisUtil } from '../../utils/redis.util';
 
 @Component({
     selector: 'app-conection',
@@ -13,14 +13,14 @@ import {RedisUtil} from '../../utils/redis.util';
     ]
 })
 export class ConectionComponent {
-    public icons = {faSyncAlt, faHashtag, faTrashAlt, faEdit, faSave, faFile};
+    public icons = { faSyncAlt, faHashtag, faTrashAlt, faEdit, faSave, faFile };
     public keyList: string[] = [];
     public redisKey: string;
 
     @ViewChild('new_key_modal') newKeyModal: ModalComponent;
     @ViewChild('set_key_modal') setKeyModal: ModalComponent;
 
-    private _connect: RedisUtil;
+    public _connect: RedisUtil;
 
     @Input()
     set connect(connect) {

@@ -1,6 +1,6 @@
-import {Component, Input} from '@angular/core';
-import {faSave} from '@fortawesome/free-solid-svg-icons';
-import {RedisUtil} from '../../utils/redis.util';
+import { Component, Input } from '@angular/core';
+import { faSave, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
+import { RedisUtil } from '../../utils/redis.util';
 
 @Component({
     selector: 'app-value',
@@ -9,7 +9,7 @@ import {RedisUtil} from '../../utils/redis.util';
 })
 
 export class ValueComponent {
-    public icons = {faSave};
+    public icons = { faSave, faSyncAlt };
     public value: string;
     public bitcount: number;
     public strlen: number;
@@ -20,15 +20,18 @@ export class ValueComponent {
 
     @Input()
     set key(key: string) {
-        this._key = key;
+        if (key) {
+            this._key = key;
 
-        this.redisGet(key).catch();
-        this.redisBitcount(key).catch();
-        this.redisStrlen(key).catch();
+            this.redisGet(key).catch();
+        }
     }
 
     public async redisGet(key: string = this._key): Promise<void> {
         this.value = await this.connect.get(key);
+
+        this.redisBitcount(key).catch();
+        this.redisStrlen(key).catch();
     }
 
     public async redisBitcount(key: string = this._key): Promise<void> {
