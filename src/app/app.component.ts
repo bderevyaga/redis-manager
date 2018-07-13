@@ -16,8 +16,9 @@ import { RedisUtil } from './utils/redis.util';
 })
 export class AppComponent implements OnInit {
     public icons = { faDatabase, faTimes, faInfoCircle, faAddressBook };
-    public connections: any[] = [];
+    public connections: Map<string, any> = new Map();
     public redisConnection: RedisClient;
+    public activeName: string;
     public connectInfo: string;
 
     @ViewChild('add_connect_modal') addConnectModal: ModalComponent;
@@ -30,42 +31,48 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         for (let index = 0; index < localStorage.length; index++) {
             const name = localStorage.key(index);
-            const {port, host, password} = JSON.parse(localStorage[name]);
+            const {port, host, password} = JSON.parse(localStorage.getItem(name));
 
             const connect = (<any>this.electronService.redis).createClient(port, host, { password });
 
-            this.connections.push({ name, connect });
+            this.connections.set(name, connect);
         }
     }
 
     public addConnect(name: string, host: string, port: number, password: string = null): void {
         this.addConnectModal.close();
 
-        localStorage[name] = JSON.stringify({port, host, password});
-
         const connect = (<any>this.electronService.redis).createClient(port, host, { password });
 
-        this.connections.push({ name, connect });
+        localStorage.setItem(name, JSON.stringify({port, host, password}));
+        this.connections.set(name, connect);
     }
 
-    public async redisInfo(connect: RedisClient) {
+    public async redisInfo(name: string) {
+        const connect = this.connections.get(name);
+
         this.connectInfo = await (<any>new RedisUtil(connect)).info();
         this.connectInfoModal.show();
     }
 
-    public closeConnect(connection): void {
-        const index = this.connections.indexOf(connection);
+    public closeConnect(name: string): void {
+        this.connections.get(name).quit();
+        this.connections.delete(name);
 
-        this.connections.splice(index, 1);
+        localStorage.removeItem(name);
 
-        if (this.redisConnection === connection.connect) {
+        if (name === this.activeName) {
             delete this.redisConnection;
+            delete this.activeName;
         }
-
-        connection.connect.quit();
     }
 
-    public connect(connect: RedisClient): void {
-        this.redisConnection = connect;
+    public connect(name: string): void {
+        this.activeName = name;
+        this.redisConnection = this.connections.get(name);
+    }
+
+    public getKeys(map): string[] {
+        return Array.from(map.keys());
     }
 }

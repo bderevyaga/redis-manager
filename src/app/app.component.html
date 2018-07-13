@@ -7,12 +7,12 @@
             </div>
         </div>
         <div class="list">
-            <div class="list-item" *ngFor="let connection of connections" [ngClass]="{active: connection?.connect.connection_id === redisConnection?.connection_id}">
+            <div class="list-item" *ngFor="let connection of getKeys(connections)" [ngClass]="{active: connection === activeName}">
                 <fa-icon [icon]="icons.faDatabase"></fa-icon>
-                <span class="name" (click)="connect(connection.connect)" [title]="connection.name">{{connection.name}}</span>
+                <span class="name" (click)="connect(connection)" [title]="connection">{{connection}}</span>
                 <span class="controls">
                 <fa-icon [icon]="icons.faTimes" (click)="closeConnect(connection)"></fa-icon>
-                <fa-icon [icon]="icons.faInfoCircle" (click)="redisInfo(connection.connect)"></fa-icon>
+                <fa-icon [icon]="icons.faInfoCircle" (click)="redisInfo(connection)"></fa-icon>
             </span>
             </div>
         </div>
