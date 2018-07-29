@@ -20,7 +20,7 @@
 <app-value [connect]="_connect" [key]="redisKey"></app-value>
 <app-modal #new_key_modal>
     <div class="input-item">
-        <label for="key">new key</label>
+        <label for="key">New key:</label>
         <input id="key" type="text" #new_key_value/>
     </div>
     <div class="controls">
@@ -29,11 +29,21 @@
 </app-modal>
 <app-modal #set_key_modal>
     <div class="input-item">
-        <label for="key-name">Key</label>
+        <label for="key-name">Key:</label>
         <input id="key-name" type="text" #key_name/>
     </div>
     <div class="input-item">
-        <label for="key-value">Value</label>
+        <label for="key-name">Type:</label>
+        <select id="key-name" type="text" #key_type>
+            <option>string</option>
+            <option>list</option>
+            <option>set</option>
+            <option>zset</option>
+            <option>hash</option>
+        </select>
+    </div>
+    <div class="input-item">
+        <label for="key-value">Value:</label>
         <textarea id="key-value" #key_value></textarea>
     </div>
     <div class="controls">
